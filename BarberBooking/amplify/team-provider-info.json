@@ -16,5 +16,23 @@
         "BarberBooking": {}
       }
     }
+  },
+  "newenv": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-barberbooking-newenv-211229-authRole",
+      "UnauthRoleArn": "arn:aws:iam::390724646331:role/amplify-barberbooking-newenv-211229-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::390724646331:role/amplify-barberbooking-newenv-211229-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-barberbooking-newenv-211229-deployment",
+      "UnauthRoleName": "amplify-barberbooking-newenv-211229-unauthRole",
+      "StackName": "amplify-barberbooking-newenv-211229",
+      "StackId": "arn:aws:cloudformation:us-east-1:390724646331:stack/amplify-barberbooking-newenv-211229/d51ab990-7b97-11ed-bbb1-0a8ee08f0745",
+      "AmplifyAppId": "d2namty3v20uo5"
+    },
+    "categories": {
+      "auth": {
+        "BarberBooking": {}
+      }
+    }
   }
 }
