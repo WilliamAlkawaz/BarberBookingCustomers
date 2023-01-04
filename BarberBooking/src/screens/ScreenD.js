@@ -18,7 +18,7 @@ export default function ScreenD() {
     const route = useRoute();
     const navigation = useNavigation(); 
     
-    const {barberId, shopId, shopName, day, date, time, service, beard, price} = route.params.params;
+    const {barberId, shopId, shopName, day, date, time, service, price} = route.params.params;
     const [user, setUser] = useState(undefined);
 
     const checkUser = async () => {
@@ -51,13 +51,11 @@ export default function ScreenD() {
                     "description": "jlkjlk", 
                     "no_of_Barbers": 1, 
                     "no_of_Haircuts": 1, 
-                    "no_of_Beardstyles": 1, 
                     "confirmed": true, 
                     "day": day, 
                     "date": date,
                     "time": time, 
-                    "service": service, 
-                    "beard": beard 
+                    "service": service
                 })
               };
               console.log(API_URL + 'Bookings', requestOptions);
@@ -73,8 +71,8 @@ export default function ScreenD() {
         }
         else {
             navigation.navigate('Login', {params: {
-                barberId: barberId, storeId: shopId, shopName: shopName, day: day, date: date, time: time, service: service, beard: 
-                beard, price: price, fromMainPage: false
+                barberId: barberId, storeId: shopId, shopName: shopName, day: day, date: date, time: time, service: service, 
+                price: price, fromMainPage: false
             }});
         }
     }
@@ -87,8 +85,6 @@ export default function ScreenD() {
         <View style={styles.checkboxItem}><Text style={styles.name}>{time}</Text></View>
         <Text style={styles.text}>for</Text>
         <View style={styles.checkboxItem}><Text style={styles.name}>{service}</Text></View>
-        <Text style={styles.text}>and</Text>
-        <View style={styles.checkboxItem}><Text style={styles.name}>{beard}</Text></View>
         <Text style={styles.text}>total price</Text>
         <View style={styles.checkboxItem}><Text style={styles.name}>{price}</Text></View>
         <Pressable

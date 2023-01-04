@@ -1,15 +1,15 @@
 {
   "staging": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-barberbooking-staging-90650-authRole",
-      "UnauthRoleArn": "arn:aws:iam::390724646331:role/amplify-barberbooking-staging-90650-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::390724646331:role/amplify-barberbooking-staging-90650-authRole",
+      "AuthRoleName": "amplify-barberbooking-staging-22927-authRole",
+      "UnauthRoleArn": "arn:aws:iam::390724646331:role/amplify-barberbooking-staging-22927-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::390724646331:role/amplify-barberbooking-staging-22927-authRole",
       "Region": "ap-southeast-2",
-      "DeploymentBucketName": "amplify-barberbooking-staging-90650-deployment",
-      "UnauthRoleName": "amplify-barberbooking-staging-90650-unauthRole",
-      "StackName": "amplify-barberbooking-staging-90650",
-      "StackId": "arn:aws:cloudformation:ap-southeast-2:390724646331:stack/amplify-barberbooking-staging-90650/981a7990-9c63-11ec-a891-0236e46e2510",
-      "AmplifyAppId": "d2mo31q88r3kxm"
+      "DeploymentBucketName": "amplify-barberbooking-staging-22927-deployment",
+      "UnauthRoleName": "amplify-barberbooking-staging-22927-unauthRole",
+      "StackName": "amplify-barberbooking-staging-22927",
+      "StackId": "arn:aws:cloudformation:ap-southeast-2:390724646331:stack/amplify-barberbooking-staging-22927/ebf63d00-96ab-11ec-8a09-02adba4e9f26",
+      "AmplifyAppId": "d98fz005bkbfq"
     },
     "categories": {
       "auth": {

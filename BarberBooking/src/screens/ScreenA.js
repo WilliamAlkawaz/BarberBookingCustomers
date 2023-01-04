@@ -39,8 +39,6 @@ export default function ScreenA() {
 
     const geoFailure = () => {
         console.log('failure of the location'); 
-        //setLocSeccess(false);
-        //console.log(err);
         const getShops = async () => {
             const shopsFromServer = await fetchShops();
             console.log('after fetching outside fetching function'); 
@@ -241,9 +239,6 @@ export default function ScreenA() {
                 const requestOptions = {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    // body: JSON.stringify({
-                    //     "userName": ((user.providerData[0]).email).toString()
-                    // })
                   };
                   console.log(API_URL + 'Bookings/Cancel/' + id, requestOptions);
                   fetch(API_URL + 'Bookings/Cancel/' + id, requestOptions)

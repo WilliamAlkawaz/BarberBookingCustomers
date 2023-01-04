@@ -17,7 +17,7 @@ export default function ScreenC({navigation, route}) {
     const {x, shopId, shopName} = route.params;
     const [totalPrice, setTotalPrice] = useState(0); 
     const [servicePPrice, setServicePPrice] = useState(0);
-    const [beardServicePPrice, setBeardServicePPrice] = useState(0);
+    // const [beardServicePPrice, setBeardServicePPrice] = useState(0);
     const [barberServiceCheck, setBarberServiceCheck] = useState([]);
     const [barber, setBarber] = useState(x);
     const [user, setUser] = useState(undefined);
@@ -37,12 +37,12 @@ export default function ScreenC({navigation, route}) {
         // setServicePPrice(0); 
         // setBeardServicePPrice(0); 
         // setBarberServiceCheck([]);
-        for (var i=0; i<x.beardServices.length; i++)
-        {
-            barberServiceCheck.push(x.selected);
-            setBarberServiceCheck(barberServiceCheck);
-        }
-        setBarber(x);
+        // for (var i=0; i<x.barberServiceCheck.length; i++)
+        // {
+        //     barberServiceCheck.push(x.selected);
+        //     setBarberServiceCheck(barberServiceCheck);
+        // }
+        // setBarber(x);
     }, []);
 
     useEffect(() => {
@@ -59,9 +59,9 @@ export default function ScreenC({navigation, route}) {
     }
 
     const handleNext = () => {
-        if(selectedId === null && beardSelectedId === null)
+        if(selectedId === null)
         {
-            alert('Please selected a haristyle or a beardstyle'); 
+            alert('Please selected a hair style.'); 
             return; 
         }
             Array.prototype.select = function(closure){
@@ -79,13 +79,6 @@ export default function ScreenC({navigation, route}) {
         }     
         else
             var s = {"name": "No hairstyle selected"};  
-        if(beardSelectedId !== null) {
-            var b = barber.beardServices.select(function(g) {return g.id==beardSelectedId});   
-            if(!b) 
-                var b = {"name": "No beardstyle selected"};
-        } 
-        else
-            var b = {"name": "No beardstyle selected"}; 
         
         if(selectedDayId !== null)
             var d = barber.days.select(function(g) {return g.id==selectedDayId}); 
@@ -104,13 +97,13 @@ export default function ScreenC({navigation, route}) {
         //setBooking(b1);
         if(user) {
             navigation.navigate('ScreenD', {params: {
-            barberId: barber.id, barberName: barber.firstName, shopId: shopId, shopName: shopName, day: d.name, date: d.date, time: t.time_Slot, service: s.name, beard: 
-            b.name, price: totalPrice}});
+            barberId: barber.id, barberName: barber.firstName, shopId: shopId, shopName: shopName, day: d.name, date: d.date, time: t.time_Slot, service: s.name, 
+            price: totalPrice}});
         }
         else {
             navigation.navigate('Login', {params: {
-                barberId: barber.id, barberName: barber.firstName, shopId: shopId, shopName: shopName, day: d.name, date: d.date, time: t.time_Slot, service: s.name, beard: 
-                b.name, price: totalPrice}});
+                barberId: barber.id, barberName: barber.firstName, shopId: shopId, shopName: shopName, day: d.name, date: d.date, time: t.time_Slot, service: s.name, 
+                price: totalPrice}});
         }
         
     }
@@ -126,37 +119,17 @@ export default function ScreenC({navigation, route}) {
                 />
                 <View style={styles.checkboxContainer}>          
                     <Text style={[styles.name, textColor]}>{item.name}</Text>     
-                    <Text style={[styles.pDes, textColor]}>(around {item.time} min)</Text>           
+                    {/* <Text style={[styles.pDes, textColor]}>(around {item.time} min)</Text>            */}
                 </View>
                 <View style={styles.checkboxContainer}>
-                <Text style={[styles.bDesLeft, textColor]}>${item.price}</Text>
-                </View>
-            </View>
-        </TouchableOpacity>
-    );
-
-    const BeardItem = ({ item, onPress, backgroundColor, textColor, selected }) => (        
-        <TouchableOpacity 
-            onPress={onPress} 
-            disabled={item.disabled} 
-            style={[backgroundColor, styles.touchable]}>          
-            <View style={styles.checkboxItem}>
-                <Image 
-                    source={selected ? require('./assets/check-bold.png') : require('./assets/checkbox-blank-circle.png')}
-                />
-                <View style={styles.checkboxContainer}>          
-                    <Text style={[styles.name, textColor]}>{item.name}</Text>     
-                    <Text style={[styles.pDes, textColor]}>(around {item.time} min)</Text>           
-                </View>
-                <View style={styles.checkboxContainer}>
-                <Text style={[styles.bDesLeft, textColor]}>${item.price}</Text>
+                    <Text style={[styles.bDesLeft, textColor]}>${item.price}</Text>
                 </View>
             </View>
         </TouchableOpacity>
     );
 
     const [selectedId, setSelectedId] = useState(null);
-    const [beardSelectedId, setBeardSelectedId] = useState(null);
+    // const [beardSelectedId, setBeardSelectedId] = useState(null);
 
     const renderItem = ({ item }) => {
         const backgroundColor = item.id === selectedId ? "#0f5555" : "#4ae1fa";
@@ -173,21 +146,6 @@ export default function ScreenC({navigation, route}) {
         );
     };  
 
-    const renderBeardItem = ({ item }) => {
-        const backgroundColor = item.id === beardSelectedId ? "#0f5555" : "#4ae1fa";
-        const color = item.id === beardSelectedId ? 'white' : 'black';
-    
-        return (
-            <BeardItem
-                item={item}
-                onPress={() => handleBeardService(item.id, item.price)}
-                backgroundColor={{ backgroundColor }}
-                textColor={{ color }}
-                selected= {item.id === beardSelectedId}
-            />
-        );
-    };     
-
     const handleService = (id, p) => 
     {      
         if(id===selectedId)
@@ -201,22 +159,6 @@ export default function ScreenC({navigation, route}) {
             setSelectedId(id); 
             setTotalPrice(totalPrice+p-servicePPrice);
             setServicePPrice(p); 
-        } 
-    }
-
-    const handleBeardService = (id, p) => 
-    {        
-        if(id===beardSelectedId)
-        {
-            setBeardSelectedId(null);
-            setTotalPrice(totalPrice-p);
-            setBeardServicePPrice(0);
-        }
-        else
-        {
-            setBeardSelectedId(id); 
-            setTotalPrice(totalPrice+p-beardServicePPrice);
-            setBeardServicePPrice(p); 
         } 
     }
 
@@ -318,18 +260,6 @@ export default function ScreenC({navigation, route}) {
                     keyExtractor={(item) => item.id}
                     extraData={selectedId}
                 />
-                <Text style={styles.text}>Select beard style</Text>
-                {
-                    barber.beardServices.length !== 0 ? 
-                    <FlatList
-                    data={barber.beardServices}
-                    renderItem={renderBeardItem}
-                    keyExtractor={(item) => item.id}
-                    extraData={beardSelectedId}
-                    /> 
-                    : 
-                    <Text style={styles.selectedDay}>No beard service provided by this barber</Text>
-                }
                 
                 <Text style={styles.text}>Select day & time</Text>
                 <View style={styles.dateTime}>
