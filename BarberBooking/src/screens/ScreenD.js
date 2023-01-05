@@ -40,34 +40,49 @@ export default function ScreenD() {
             console.log('before sending to payment ' + barberId + shopName);          
             const requestOptions = {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { Accept: 'application/json','Content-Type': 'application/json' },
                 body: JSON.stringify({
                     "userName": (user.attributes.email).toString(),
                     "barberId": barberId,
                     "shopId": shopId,
-                    "shoName": shopName,
+                    "shopName": shopName,
                     "totalPrice": price, 
                     "customerPhone": "09098609",
                     "description": "jlkjlk", 
-                    "no_of_Barbers": 1, 
+                    "noOfBarbers": 1, 
                     "no_of_Haircuts": 1, 
                     "confirmed": true, 
                     "day": day, 
                     "date": date,
                     "time": time, 
-                    "service": service
+                    "service": service, 
+                    "bookingDateTime": '2000-01-01T00:00:00'
                 })
               };
-              console.log(API_URL + 'Bookings', requestOptions);
+              console.log("Hitting confirm: " + "userName " + (user.attributes.email).toString() +
+              " barberId " + barberId +
+              " shopId " + shopId +
+              " shopName " + shopName +
+              " totalPrice " + price +
+              " customerPhone " + "09098609" +
+              " description " + "jlkjlk" + 
+              " noOfBarbers " + 1 +
+              " no_of_Haircuts " + 1 + 
+              " confirmed " + true +
+              " day " + day + 
+              " date " + date +
+              " time " + time + 
+              " service " + service);
               fetch(API_URL + 'Bookings', requestOptions)
                   .then(response => response.json())
-                  .then(data => console.log(data))
+                  .then(data => console.log('the data is: ' + JSON.stringify(data)))
                   .catch(e => {
-                    alert(e);
+                    alert('from catch: ' + e);
                     return;
-                  }); 
-              RNRestart.Restart();
-              navigation.navigate('Screen_A');    
+                  }).finally(e => {
+                    RNRestart.Restart();
+                    navigation.navigate('ScreenA');   
+                  });          
         }
         else {
             navigation.navigate('Login', {params: {
